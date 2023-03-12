@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Trajetória dos Indicadores Globais de 2000 a 2100</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+  <div id="chart"></div>
+
+  <script>
+    // Dados dos indicadores
+    var indicadores = [{
+        nome: 'População mundial',
+        dados: [
+          [2000, 6079500],
+          [2010, 6899000],
+          [2020, 7713468],
+          [2030, 8562664],
+          [2040, 9413464],
+          [2050, 10227e3],
+          [2060, 10903e3],
+          [2070, 11594e3],
+          [2080, 12301e3],
+          [2090, 13024e3],
+          [2100, 13763e3]
+        ]
+      },
+      {
+        nome: 'Expectativa de vida',
+        dados: [
+          [2000, 68.5],
+          [2010, 70.5],
+          [2020, 72.5],
+          [2030, 74.5],
+          [2040, 76.3],
+          [2050, 77.9],
+          [2060, 79.3],
+          [2070, 80.5],
+          [2080, 81.5],
+          [2090, 82.4],
+          [2100, 83.2]
+        ]
+      },
+      {
+        nome: 'PIB global',
+        dados: [
+          [2000, 33333000],
+          [2010, 62330000],
+          [2020, 82593000],
+          [2030, 112272000],
+          [2040, 146570000],
+          [2050, 186955000],
+          [2060, 231603000],
+          [2070, 280638000],
+          [2080, 334186000],
+          [2090, 392377000],
+          [2100, 455357000]
+        ]
+      }
+    ];
+
+    // Configuração do gráfico
+    var config = {
+      displayModeBar: false,
+      responsive: true
+    };
+
+    // Dados para cada linha do gráfico
+    var linhas = indicadores.map(function(indicador) {
+      return {
+        x: indicador.dados.map(function(dado) {
+          return dado[0];
+        }),
+        y: indicador.dados.map(function(dado) {
+          return dado[1];
+        }),
+        name: indicador.nome
+      };
+    });
+
+    // Layout do gráfico
+    var layout = {
+      title: 'Trajetória dos Indicadores Globais de 2000 a 2100',
+      xaxis: {
+        title: 'Ano',
+        tickmode: 'linear',
+        tick0: 2000,
+        dtick: 10,
+        range: [2000, 2100]
+      },
+      yaxis: {
+        title: 'Valor'
+      },
+      legend: {
+        orientation: 'h'
+      }
+    };
+
+    // Criação do gráfico
+    Plotly.newPlot('chart', linhas, layout, config);
+  </script>
+</body>
+
+</html>
